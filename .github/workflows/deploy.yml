@@ -22,7 +22,7 @@ jobs:
         username: ${{ secrets.REGISTRY_USERNAME }}  # Use your GitHub secret for the registry username
         password: ${{ secrets.REGISTRY_PASSWORD }}  # Use your GitHub secret for the registry password
 
-    - name: Build and push Docker image
+    - name: Build and push Docker images
       uses: docker/build-push-action@v4
       with:
         context: .
