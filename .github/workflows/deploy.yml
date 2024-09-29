@@ -29,11 +29,11 @@ jobs:
         push: true
         tags: alexjelani13/k8s-deployment-pipeline:latest  # Replace with your actual image name and tag
 
-    - name: Create kubeconfig
-      run: |
-        mkdir -p ${HOME}/.kube
-        echo "${{ secrets.KUBE_CONFIG }}" | base64 --decode > ${HOME}/.kube/config  
-        cat ${HOME}/.kube/config  # Optional: View the kubeconfig for debugging
+    # - name: Create kubeconfig
+    #   run: |
+    #     mkdir -p ${HOME}/.kube
+    #     echo "${{ secrets.KUBE_CONFIG }}" | base64 --decode > ${HOME}/.kube/config  
+    #     cat ${HOME}/.kube/config  
 
     - name: Set up kubectl
       uses: azure/setup-kubectl@v3
@@ -41,5 +41,8 @@ jobs:
         version: 'latest'
 
     - name: Deploy to Kubernetes
+      # run: |
+      #   kubectl apply -f deployment.yml --kubeconfig=${HOME}/.kube/config
       run: |
-        kubectl apply -f deployment.yml --kubeconfig=${HOME}/.kube/config
+        echo "${{ secrets.KUBE_CONFIG }}" > kubeconfig.yaml
+        kubectl apply -f deployment.yml --kubeconfig=kubeconfig.yaml
