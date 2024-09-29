@@ -27,7 +27,7 @@ jobs:
       with:
         context: .
         push: true
-        tags: alexjelani13/k8s-deployment-pipeline:latest  # Your actual image name and tag
+        tags: alexjelani13/k8s-deployment-pipeline:latest  # Your actual image name and tagged
 
     - name: Setup kubeconfig
       run: |
