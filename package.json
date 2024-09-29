@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "express": "^4.21.0"
+  },
+  "name": "k8s-deployment-pipeline",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "kill-port": "^2.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "stop": "kill-port 3001"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

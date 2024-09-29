@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-deployment-pipeline
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k8s-deployment-pipeline
+  template:
+    metadata:
+      labels:
+        app: k8s-deployment-pipeline
+    spec:
+      containers:
+      - name: k8s-deployment-pipeline
+        image: alexjelani13/k8s-deployment-pipeline:latest
+        ports:
+        - containerPort: 3000
+        resources:
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+          requests:
+            cpu: "250m"
+            memory: "256Mi"
+
