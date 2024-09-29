@@ -35,11 +35,11 @@ jobs:
         echo ${{ secrets.KUBE_CONFIG }} | base64 --decode > ${HOME}/.kube/config
         cat ${HOME}/.kube/config
 
-    - name: Use context for Docker Desktop
-      run: kubectl config use-context octobay-api-docker
+    - name: Use context for mini-cube
+      run: kubectl config use-context octobay-api-minicube
 
     - name: Deploy to K8s
-      run: kubectl apply -f k8s/deployment.yml
+      run: kubectl apply -f k8s/
 
 
       
