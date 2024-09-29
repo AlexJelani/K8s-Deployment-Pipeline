@@ -22,27 +22,25 @@ jobs:
         username: ${{ secrets.REGISTRY_USERNAME }}  # Use your GitHub secret for the registry username
         password: ${{ secrets.REGISTRY_PASSWORD }}  # Use your GitHub secret for the registry password
 
-    - name: Build and push Docker images
+    - name: Build and push Docker image
       uses: docker/build-push-action@v4
       with:
         context: .
         push: true
-        tags: alexjelani13/k8s-deployment-pipeline:latest  # Replace with your actual image name and tag
+        tags: alexjelani13/k8s-deployment-pipeline:latest  # Your actual image name and tag
 
-    # - name: Create kubeconfig
-    #   run: |
-    #     mkdir -p ${HOME}/.kube
-    #     echo "${{ secrets.KUBE_CONFIG }}" | base64 --decode > ${HOME}/.kube/config  
-    #     cat ${HOME}/.kube/config  
-
+    - name: Setup kubeconfig
+      run: |
+        echo "${{ secrets.KUBE_CONFIG }}" | base64 --decode > kubeconfig.yaml
+        chmod 600 kubeconfig.yaml 
+        
     - name: Set up kubectl
       uses: azure/setup-kubectl@v3
       with:
         version: 'latest'
 
     - name: Deploy to Kubernetes
-      # run: |
-      #   kubectl apply -f deployment.yml --kubeconfig=${HOME}/.kube/config
       run: |
-        echo "${{ secrets.KUBE_CONFIG }}" > kubeconfig.yaml
         kubectl apply -f deployment.yml --kubeconfig=kubeconfig.yaml
+
+      
