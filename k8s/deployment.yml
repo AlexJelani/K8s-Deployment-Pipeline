@@ -16,7 +16,7 @@ spec:
       - name: k8s-deployment-pipeline
         image: alexjelani13/k8s-deployment-pipeline:latest
         ports:
-        - containerPort: 80
+        - containerPort: 3000
         resources:
           limits:
             cpu: "500m"
