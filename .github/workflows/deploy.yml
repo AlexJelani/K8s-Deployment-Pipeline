@@ -32,11 +32,11 @@ jobs:
     - name: Create kubeconfig
       run: |
         mkdir -p ${HOME}/.kube
-        echo "${{ secrets.KUBE_CONFIG }}" | base64 --decode > ${HOME}/.kube/config  # Use your GitHub secret for kubeconfig
+        echo "${{ secrets.KUBE_CONFIG }}" | base64 --decode > ${HOME}/.kube/config  
         cat ${HOME}/.kube/config  # Optional: View the kubeconfig for debugging
 
     - name: Set up kubectl
-      uses: azure/setup-kubectl@v2
+      uses: azure/setup-kubectl@v3
       with:
         version: 'latest'
 
