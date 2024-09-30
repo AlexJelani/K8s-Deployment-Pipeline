@@ -39,7 +39,7 @@ jobs:
       run: kubectl config use-context octobay-api-minikube
 
     - name: Deploy to K8s
-      run: kubectl apply -f k8s/
+      run: kubectl apply -f k8s/deployment.yml
 
 
       
